@@ -4,7 +4,6 @@ import { FaArrowAltCircleLeft } from "react-icons/fa";
 export default function BookDetails() {
   const params = useParams();
   const navigate = useNavigate();
-  console.log(params.id);
   const books = useSelector((store) => store.books.items);
   return books
     .filter((item) => parseInt(item.id) === parseInt(params.id))
@@ -58,10 +57,12 @@ export default function BookDetails() {
             <p>
               <strong>Description : </strong>
               <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
+                {book.description
+                  ? book.description
+                  : `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
                 est dignissimos libero dolores. Dolore quod officia, eveniet
                 ratione temporibus autem necessitatibus voluptates ea optio est
-                id quo fugit placeat expedita!
+                id quo fugit placeat expedita!`}
               </span>
             </p>
           </div>
