@@ -34,10 +34,9 @@ export default function Home() {
             .sort((a, b) => b.rating - a.rating)
             .slice(0, 5)
             .map((book) => (
-              <Link
-                to={`bookdetails/${book.id}`}
-                key={`book/${book.id}`}
-                className="flex flex-col gap-4 border rounded-md w-[200px] grow max-w-[300px] overflow-hidden"
+              <div
+                key={`book/popular/${book.id}`}
+                className="relative flex flex-col gap-4 border rounded-md w-[200px] grow max-w-[300px] overflow-hidden justify-between"
               >
                 <img
                   className="w-full h-[300px] object-cover hover:scale-90 transition-all"
@@ -49,8 +48,8 @@ export default function Home() {
                     )}&font=montserrat`;
                   }}
                 />
-                <div className="relative flex flex-col p-4 items-start">
-                  <p className="absolute -top-4 right-2 text-[12px]">
+                <div className="flex flex-col p-4 items-start justify-between">
+                  <p className="absolute bg-black py-1 px-2 top-1 right-1 text-[12px]">
                     <strong>Rating : </strong>
                     <span>{book.rating}⭐</span>
                   </p>
@@ -70,8 +69,14 @@ export default function Home() {
                     <strong>Category : </strong>
                     <span>{book.category}</span>
                   </p>
+                  <Link
+                    className="text-blue-500 text-[12px]"
+                    to={`bookdetails/${book.id}`}
+                  >
+                    View Details..
+                  </Link>
                 </div>
-              </Link>
+              </div>
             ))}
         </div>
       </article>
