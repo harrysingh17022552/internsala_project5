@@ -5,7 +5,7 @@ export default function Home() {
 
   return (
     <section className="w-full p-4 flex flex-col gap-12">
-      <h1 className="text-center text-transparent bg-clip-text bg-linear-to-r from-violet-600 via-green-600 to-red-600 tracking-tight transition-colors">
+      <h1 className="text-center text-6xl md:text-7xl text-transparent bg-clip-text bg-linear-to-r from-violet-600 via-green-600 to-red-600 tracking-tight transition-colors">
         Welcome to Harry's Book Store
       </h1>
       <article className="flex flex-col gap-6">
@@ -20,7 +20,7 @@ export default function Home() {
               <Link
                 key={`book/category/${index}`}
                 to={`/bookcategory/${item}`}
-                className="flex justify-center p-4 border rounded-md shadow-[0.01rem_0.01rem_0.7rem_0.01rem_white_inset]"
+                className="flex justify-center p-4 border rounded-md shadow-[0.01rem_0.01rem_0.7rem_0.01rem_white_inset] grow sm:grow-0"
               >
                 {item}
               </Link>
@@ -71,7 +71,7 @@ export default function Home() {
                   </p>
                   <Link
                     className="text-blue-500 text-[12px]"
-                    to={`bookdetails/${book.id}`}
+                    to={`/bookdetails/${book.id}`}
                   >
                     View Details..
                   </Link>

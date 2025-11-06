@@ -122,7 +122,7 @@ export default function BrowseBooks() {
                   </p>
                   <Link
                     className="text-blue-500 text-[12px]"
-                    to={`bookdetails/${book.id}`}
+                    to={`/bookdetails/${book.id}`}
                   >
                     View Details..
                   </Link>
