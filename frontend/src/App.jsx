@@ -7,7 +7,7 @@ import myStore from "./store/Store";
 function App() {
   const [user, setUSer] = useState({ fname: "Harish", lname: "Nigam" });
   return (
-    <main className="flex flex-col gap-8 w-full h-screen overflow-scroll noscrollbar">
+    <main className="flex flex-col gap-8 w-full min-h-screen overflow-scroll noscrollbar">
       <Provider store={myStore}>
         <Header user={user} />
         <Outlet />
