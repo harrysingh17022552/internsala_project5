@@ -13,7 +13,7 @@ const RootProvider = () => {
       path: "/",
       element: <App />,
       children: [
-        { path: "addbook", element: <AddBook /> },
+        { path: "addbooks", element: <AddBook /> },
         { path: "browsebooks", element: <BrowseBooks /> },
         { path: "bookcategory/:category", element: <BookCategory /> },
         { path: "bookdetails/:id", element: <BookDetails /> },
