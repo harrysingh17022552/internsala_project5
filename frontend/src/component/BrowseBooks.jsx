@@ -39,7 +39,7 @@ export default function BrowseBooks() {
   };
   return (
     <section className="w-full p-4 flex flex-col gap-12">
-      <h1 className="text-center text-transparent bg-clip-text bg-linear-to-r from-violet-600 via-green-600 to-red-600 tracking-tight transition-colors">
+      <h1 className="text-center text-6xl md:text-7xl text-transparent bg-clip-text bg-linear-to-r from-violet-600 via-green-600 to-red-600 tracking-tight transition-colors">
         Browse Books
       </h1>
       <div className="relative w-full sm:w-[75%] lg:w-1/2 flex justify-center items-center self-center p-4 gap-4">
