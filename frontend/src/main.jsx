@@ -9,6 +9,9 @@ import BrowseBooks from "./component/BrowseBooks.jsx";
 import BookCategory from "./component/BookCategory";
 import BookDetails from "./component/BookDetails.jsx";
 import Er404 from "./ErrorComponent/Er404.jsx";
+
+//Routing user, to their specific component for a static route or dynamic route, currently routes except root are the children of the our main App Component, to share some common component.
+//Error Boundary element is also provided whenever there is wrong path or any kind of error occurs.
 const RootProvider = () => {
   const router = createBrowserRouter([
     {
@@ -21,7 +24,7 @@ const RootProvider = () => {
         { path: "bookcategory/:category", element: <BookCategory /> },
         { path: "bookdetails/:id", element: <BookDetails /> },
       ],
-      errorElement: <Er404 />,
+      ErrorBoundary: Er404,
     },
   ]);
   return <RouterProvider router={router} />;

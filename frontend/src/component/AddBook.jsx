@@ -3,10 +3,15 @@ import { addBook } from "../store/slices/bookSlice";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 export default function AddBook() {
+  //using useDispatch that dispatch our action with the store and make the changes according to our actions
   const dispatch = useDispatch();
+  //using useRef to make some changes on button contain while adding books, this will make user experience more better.
   const btnRef = useRef(null);
   const navigate = useNavigate();
+  //used useSelector to read data from store or to use data from store, here we are using books array that we used in initial state, the purpose to use it here to calculate the id for next upcoming book.
   const currentBook = useSelector((store) => store.books.items);
+
+  //state manipulates when there new book added.
   const [newBook, setNewBook] = useState({
     id: 0,
     bookname: "",
@@ -19,6 +24,10 @@ export default function AddBook() {
     description: "",
     bookimage: "",
   });
+
+  //this function make changes in button text & color using btnRef as it moves forward
+  // & then dispatch the new payload to the action in store, to push this payload in our original array.
+  // & on successfull submission, this alert user successfull message and then send them to the browse page where there added book is listed in front as per descending id's sorting.
   const handleSubmit = () => {
     btnRef.current.style.color = "blue";
     btnRef.current.textContent = "Submitting..";
@@ -40,6 +49,10 @@ export default function AddBook() {
     }, 3000);
   };
   return (
+    // this section contains the form that takes the required information from the user and onchange of there respective input field it manipulates the newBook State.
+    //It has some input validation like rating ranges from 0 to 10, published date ranges from above 1500 and till current year.
+    //all fields are mandatory as per book structure
+    //Submit button will appear only after all mandatory fields are completed.
     <section className="w-full flex flex-col gap-8 p-4 items-center">
       <h1 className="text-center text-6xl md:text-7xl text-transparent bg-clip-text bg-linear-to-r from-red-600 to-blue-600 tracking-tight transition-colors">
         Add Book
@@ -89,6 +102,8 @@ export default function AddBook() {
               name="bpub"
               id="bpub"
               placeholder="When Book Published*"
+              min={1500}
+              max={new Date().getFullYear()}
               onChange={(e) =>
                 setNewBook((prev) => ({
                   ...prev,
@@ -153,7 +168,8 @@ export default function AddBook() {
         {newBook.bookname.length > 2 ? (
           newBook.bookauthor.length > 2 ? (
             newBook.bookprice > 0 ? (
-              newBook.bookpublished > 1000 ? (
+              newBook.bookpublished > 1500 &&
+              newBook.bookpublished <= new Date().getFullYear() ? (
                 newBook.category.length > 2 ? (
                   newBook.rating >= 0 && newBook.rating <= 10 ? (
                     newBook.booktitle.length > 2 ? (

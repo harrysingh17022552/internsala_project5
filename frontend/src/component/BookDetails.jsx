@@ -2,9 +2,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 export default function BookDetails() {
+  // this returns the object that contain all the params that we dynamically allocated in route section
   const params = useParams();
+  //used to navigate to the page
   const navigate = useNavigate();
+  //used useSelector to read data from store or to use data from store, here we are using books array that we used in initial state
   const books = useSelector((store) => store.books.items);
+  //This is BookDetails Component that takes the book id from the url and then it filter that book from the books.
   return books
     .filter((item) => parseInt(item.id) === parseInt(params.id))
     .map((book) => (
@@ -12,6 +16,7 @@ export default function BookDetails() {
         key={`unique/bookdetails/${book.id}`}
         className="w-full flex flex-col justify-center items-center gap-4 p-4"
       >
+        {/* navigation area to move one step backward */}
         <div className="flex flex-nowrap items-center gap-4">
           <div>
             <FaArrowAltCircleLeft
@@ -22,6 +27,7 @@ export default function BookDetails() {
           <h2 className="text-4xl">{book.bookname.toUpperCase()}</h2>
         </div>
         <h3 className="text-xl">{book.booktitle}</h3>
+        {/* section that shows the book image, and book information like author, when published,  price, category,Rating & Description */}
         <div className="w-full justify-center flex flex-wrap sm:flex-nowrap gap-8">
           <img
             className="w-full sm:w-1/3 lg:w-1/6 object-cover rounded-lg  transition-all"

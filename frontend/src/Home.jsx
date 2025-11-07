@@ -1,13 +1,16 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 export default function Home() {
+  //used useSelector to read data from store or to use data from store, here we are using books array that we used in initial state
   const booksAvailable = useSelector((store) => store.books.items);
 
   return (
     <section className="w-full p-4 flex flex-col gap-12">
+      {/* welcome message at home page */}
       <h1 className="text-center text-6xl md:text-7xl text-transparent bg-clip-text bg-linear-to-r from-violet-600 via-green-600 to-red-600 tracking-tight transition-colors">
         Welcome to Harry's Book Store
       </h1>
+      {/* this section maps all the categories here, the mapping first map out all categories from book array with duplicates and then remove duplicates from there and map unique categories */}
       <article className="flex flex-col gap-6">
         <h2 className="self-start text-2xl font-bold">Book Categories</h2>
         <div className="flex flex-wrap gap-4">
@@ -27,6 +30,7 @@ export default function Home() {
             ))}
         </div>
       </article>
+      {/* this section list the popular books from book list based on rating, before mapping code first sort array based on rating in descending, apart from this in image section, if image is failed to load or unable to load with any error, it will fetch default image from the link provided with their book name.*/}
       <article className="flex flex-col gap-6">
         <h2 className="self-start text-2xl font-bold">Top Picks for You</h2>
         <div className="flex flex-wrap gap-4">

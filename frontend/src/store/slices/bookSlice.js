@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 const bookSlice = createSlice({
+  //name of slice
   name: "books",
+  //contain almost 30 dummy book data
   initialState: {
     items: [
       {
@@ -367,9 +369,11 @@ const bookSlice = createSlice({
     ],
   },
   reducers: {
+    // add new book action, that will take object as payload and push it in my current book store item array
     addBook: (state, action) => {
       state.items.push(action.payload);
     },
+    // just dummy action for now, thats all
     removeBook: (state, action) => {
       state.items.pop();
     },
