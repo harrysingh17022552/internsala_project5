@@ -10,23 +10,35 @@ import BookCategory from "./component/BookCategory";
 import BookDetails from "./component/BookDetails.jsx";
 import Er404 from "./ErrorComponent/Er404.jsx";
 
-//Routing user, to their specific component for a static route or dynamic route, currently routes except root are the children of the our main App Component, to share some common component.
-//Error Boundary element is also provided whenever there is wrong path or any kind of error occurs.
 const RootProvider = () => {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <App />,
+      errorElement: <Er404 message="Oops! Something went wrong." />,
       children: [
         { path: "/", element: <Home /> },
         { path: "addbooks", element: <AddBook /> },
         { path: "browsebooks", element: <BrowseBooks /> },
-        { path: "bookcategory/:category", element: <BookCategory /> },
-        { path: "bookdetails/:id", element: <BookDetails /> },
+        {
+          path: "bookcategory/:category",
+          element: <BookCategory />,
+          errorElement: (
+            <Er404 message="Hey, this kind of Book Category does not exist" />
+          ),
+        },
+        {
+          path: "bookdetails/:id",
+          element: <BookDetails />,
+          errorElement: (
+            <Er404 message="Hey, this kind of Book does not exist" />
+          ),
+        },
+        { path: "*", element: <Er404 message="Hey, this page is not available" /> },
       ],
-      ErrorBoundary: Er404,
     },
   ]);
+
   return <RouterProvider router={router} />;
 };
 

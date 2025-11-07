@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { useEffect, useState } from "react";
 export default function BookDetails() {
   // this returns the object that contain all the params that we dynamically allocated in route section
   const params = useParams();
@@ -8,10 +9,17 @@ export default function BookDetails() {
   const navigate = useNavigate();
   //used useSelector to read data from store or to use data from store, here we are using books array that we used in initial state
   const books = useSelector((store) => store.books.items);
+
+  //state for the book, params pointing for and updating this array when this dependency updates
+  const [currentBook, setCurrentBook] = useState([]);
+  useEffect(() => {
+    setCurrentBook(
+      books.filter((item) => parseInt(item.id) === parseInt(params.id))
+    );
+  }, [books, params]);
   //This is BookDetails Component that takes the book id from the url and then it filter that book from the books.
-  return books
-    .filter((item) => parseInt(item.id) === parseInt(params.id))
-    .map((book) => (
+  return currentBook.length > 0 ? (
+    currentBook.map((book) => (
       <section
         key={`unique/bookdetails/${book.id}`}
         className="w-full flex flex-col justify-center items-center gap-4 p-4"
@@ -74,5 +82,14 @@ export default function BookDetails() {
           </div>
         </div>
       </section>
-    ));
+    ))
+  ) : (
+    <section className="flex w-full gap-4 text-red-500 text-xl justify-center items-center">
+      <FaArrowAltCircleLeft
+        className="text-4xl text-blue-600 hover:text-green-500 transition-all cursor-pointer"
+        onClick={() => navigate(-1)}
+      />
+      <p>Sorry, This Kind of book doesn't Exist</p>
+    </section>
+  );
 }
