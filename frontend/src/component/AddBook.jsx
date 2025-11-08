@@ -54,161 +54,163 @@ export default function AddBook() {
     //all fields are mandatory as per book structure
     //Submit button will appear only after all mandatory fields are completed.
     <section className="w-full flex flex-col gap-8 p-4 items-center">
-      <h1 className="text-center text-6xl md:text-7xl text-transparent bg-clip-text bg-linear-to-r from-red-600 to-blue-600 tracking-tight transition-colors">
+      <h1 className="text-center text-6xl md:text-7xl text-transparent bg-clip-text bg-linear-to-r from-red-600 to-blue-600 tracking-tight transition-colors animate-[fromTop_2s_ease]">
         Add Book
       </h1>
-      <article className="flex flex-col gap-4  w-full md:w-1/2">
-        <div className="w-full flex gap-4 flex-wrap md:flex-nowrap">
-          <input
-            className="py-2 px-4 rounded-md border grow"
-            type="text"
-            name="bname"
-            id="bname"
-            placeholder="Enter Book Name*"
-            onChange={(e) =>
-              setNewBook((prev) => ({ ...prev, bookname: e.target.value }))
-            }
-            required
-            autoFocus
-          />
-          <input
-            className="py-2 px-4 rounded-md border grow"
-            type="text"
-            name="bauth"
-            id="bauth"
-            placeholder="Enter Author Name*"
-            onChange={(e) =>
-              setNewBook((prev) => ({ ...prev, bookauthor: e.target.value }))
-            }
-            required
-          />
-        </div>
-        <div className="flex flex-col gap-4">
-          <div className="w-full flex gap-4 flex-wrap md:flex-nowrap">
-            <input
-              className="py-2 px-4 rounded-md border grow"
-              type="number"
-              name="bprice"
-              id="bprice"
-              placeholder="Enter Book Price*"
-              onChange={(e) =>
-                setNewBook((prev) => ({ ...prev, bookprice: e.target.value }))
-              }
-              required
-            />
-            <input
-              className="py-2 px-4 rounded-md border grow"
-              type="number"
-              name="bpub"
-              id="bpub"
-              placeholder="When Book Published*"
-              min={1500}
-              max={new Date().getFullYear()}
-              onChange={(e) =>
-                setNewBook((prev) => ({
-                  ...prev,
-                  bookpublished: e.target.value,
-                }))
-              }
-              required
-            />
-          </div>
+      <div className="w-full flex items-center flex-col gap-8 animate-[fromBottom_2s_ease]">
+        <article className="flex flex-col gap-4  w-full md:w-1/2">
           <div className="w-full flex gap-4 flex-wrap md:flex-nowrap">
             <input
               className="py-2 px-4 rounded-md border grow"
               type="text"
-              name="bcat"
-              id="bcat"
-              placeholder="Category*"
+              name="bname"
+              id="bname"
+              placeholder="Enter Book Name*"
               onChange={(e) =>
-                setNewBook((prev) => ({ ...prev, category: e.target.value }))
+                setNewBook((prev) => ({ ...prev, bookname: e.target.value }))
               }
               required
+              autoFocus
             />
             <input
               className="py-2 px-4 rounded-md border grow"
-              type="number"
-              name="brate"
-              id="brate"
-              min={0}
-              max={10}
-              placeholder="Rating out of 10*"
+              type="text"
+              name="bauth"
+              id="bauth"
+              placeholder="Enter Author Name*"
               onChange={(e) =>
-                setNewBook((prev) => ({
-                  ...prev,
-                  rating: e.target.value,
-                }))
+                setNewBook((prev) => ({ ...prev, bookauthor: e.target.value }))
               }
               required
             />
           </div>
-        </div>
-        <textarea
-          className="py-2 px-4 rounded-md border grow"
-          name="btitle"
-          id="btitle"
-          placeholder="Enter Book Title*"
-          onChange={(e) =>
-            setNewBook((prev) => ({ ...prev, booktitle: e.target.value }))
-          }
-          required
-        ></textarea>
-        <textarea
-          className="py-2 px-4 rounded-md border grow"
-          name="bdesc"
-          id="bdesc"
-          placeholder="Enter Book Description*"
-          onChange={(e) =>
-            setNewBook((prev) => ({ ...prev, description: e.target.value }))
-          }
-          required
-        ></textarea>
-      </article>
-      <div className="text-red-500">
-        {newBook.bookname.length > 2 ? (
-          newBook.bookauthor.length > 2 ? (
-            newBook.bookprice > 0 ? (
-              newBook.bookpublished > 1500 &&
-              newBook.bookpublished <= new Date().getFullYear() ? (
-                newBook.category.length > 2 ? (
-                  newBook.rating >= 0 && newBook.rating <= 10 ? (
-                    newBook.booktitle.length > 2 ? (
-                      newBook.description.length > 2 ? (
-                        <button
-                          ref={btnRef}
-                          className="py-2 px-4 rounded-md shadow-[0.01rem_0.01rem_0.5rem_0.1rem_white_inset] text-white"
-                          onClick={handleSubmit}
-                        >
-                          Submit
-                        </button>
+          <div className="flex flex-col gap-4">
+            <div className="w-full flex gap-4 flex-wrap md:flex-nowrap">
+              <input
+                className="py-2 px-4 rounded-md border grow"
+                type="number"
+                name="bprice"
+                id="bprice"
+                placeholder="Enter Book Price*"
+                onChange={(e) =>
+                  setNewBook((prev) => ({ ...prev, bookprice: e.target.value }))
+                }
+                required
+              />
+              <input
+                className="py-2 px-4 rounded-md border grow"
+                type="number"
+                name="bpub"
+                id="bpub"
+                placeholder="When Book Published*"
+                min={1500}
+                max={new Date().getFullYear()}
+                onChange={(e) =>
+                  setNewBook((prev) => ({
+                    ...prev,
+                    bookpublished: e.target.value,
+                  }))
+                }
+                required
+              />
+            </div>
+            <div className="w-full flex gap-4 flex-wrap md:flex-nowrap">
+              <input
+                className="py-2 px-4 rounded-md border grow"
+                type="text"
+                name="bcat"
+                id="bcat"
+                placeholder="Category*"
+                onChange={(e) =>
+                  setNewBook((prev) => ({ ...prev, category: e.target.value }))
+                }
+                required
+              />
+              <input
+                className="py-2 px-4 rounded-md border grow"
+                type="number"
+                name="brate"
+                id="brate"
+                min={0}
+                max={10}
+                placeholder="Rating out of 10*"
+                onChange={(e) =>
+                  setNewBook((prev) => ({
+                    ...prev,
+                    rating: e.target.value,
+                  }))
+                }
+                required
+              />
+            </div>
+          </div>
+          <textarea
+            className="py-2 px-4 rounded-md border grow"
+            name="btitle"
+            id="btitle"
+            placeholder="Enter Book Title*"
+            onChange={(e) =>
+              setNewBook((prev) => ({ ...prev, booktitle: e.target.value }))
+            }
+            required
+          ></textarea>
+          <textarea
+            className="py-2 px-4 rounded-md border grow"
+            name="bdesc"
+            id="bdesc"
+            placeholder="Enter Book Description*"
+            onChange={(e) =>
+              setNewBook((prev) => ({ ...prev, description: e.target.value }))
+            }
+            required
+          ></textarea>
+        </article>
+        <div className="text-red-500">
+          {newBook.bookname.length > 2 ? (
+            newBook.bookauthor.length > 2 ? (
+              newBook.bookprice > 0 ? (
+                newBook.bookpublished > 1500 &&
+                newBook.bookpublished <= new Date().getFullYear() ? (
+                  newBook.category.length > 2 ? (
+                    newBook.rating >= 0 && newBook.rating <= 10 ? (
+                      newBook.booktitle.length > 2 ? (
+                        newBook.description.length > 2 ? (
+                          <button
+                            ref={btnRef}
+                            className="py-2 px-4 rounded-md shadow-[0.01rem_0.01rem_0.5rem_0.1rem_white_inset] text-white"
+                            onClick={handleSubmit}
+                          >
+                            Submit
+                          </button>
+                        ) : (
+                          <p className="error">
+                            Please Enter Valid Book Description
+                          </p>
+                        )
                       ) : (
-                        <p className="error">
-                          Please Enter Valid Book Description
-                        </p>
+                        <p className="error">Please Enter vaild Book Title</p>
                       )
                     ) : (
-                      <p className="error">Please Enter vaild Book Title</p>
+                      <p className="error">Please Enter valid Rating</p>
                     )
                   ) : (
-                    <p className="error">Please Enter valid Rating</p>
+                    <p className="error">Please Enter Valid Category</p>
                   )
                 ) : (
-                  <p className="error">Please Enter Valid Category</p>
+                  <p className="error">Please Enter valid Publish Year</p>
                 )
               ) : (
-                <p className="error">Please Enter valid Publish Year</p>
+                <p className="error">Please Enter valid Book Price</p>
               )
             ) : (
-              <p className="error">Please Enter valid Book Price</p>
+              <p className="error">Please Enter vaild Author Name</p>
             )
           ) : (
-            <p className="error">Please Enter vaild Author Name</p>
-          )
-        ) : (
-          <p className="error">
-            All mandatory field to be fulfilled to enable Submit Button
-          </p>
-        )}
+            <p className="error">
+              All mandatory field to be fulfilled to enable Submit Button
+            </p>
+          )}
+        </div>
       </div>
     </section>
   );

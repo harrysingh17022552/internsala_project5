@@ -31,7 +31,7 @@ export default function BookCategory() {
           />
         </div>
         {/* page heading & that is the category name */}
-        <h1 className="text-center text-6xl md:text-7xl text-transparent bg-clip-text bg-linear-to-b from-red-600 to-blue-600 tracking-tight transition-colors">
+        <h1 className="text-center text-4xl md:text-6xl text-transparent bg-clip-text bg-linear-to-b from-red-600 to-blue-600 tracking-tight transition-colors break-all">
           {params.category.toUpperCase()}
         </h1>
       </div>

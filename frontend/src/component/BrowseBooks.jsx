@@ -48,7 +48,7 @@ export default function BrowseBooks() {
   return (
     <section className="w-full p-4 flex flex-col gap-12">
       {/* Heading of this page */}
-      <h1 className="text-center text-6xl md:text-7xl text-transparent bg-clip-text bg-linear-to-r from-violet-600 via-green-600 to-red-600 tracking-tight transition-colors">
+      <h1 className="text-center text-6xl md:text-7xl text-transparent bg-clip-text bg-linear-to-r from-violet-600 via-green-600 to-red-600 tracking-tight transition-colors animate-[fromTop_1s_ease]">
         Browse Books
       </h1>
       {/* Search bar, where books list is depend on its search value, to search search button need to clicked, here search value validation is given whenever user search for empty, it just warn the user but fulfill query, this will reflect the result in listing all books.*/}
@@ -58,10 +58,13 @@ export default function BrowseBooks() {
           name="search"
           id="search"
           placeholder="Search Books ..."
-          className="w-full px-4 py-4 rounded-md border"
+          className="w-full px-4 py-4 rounded-md border animate-[fromLeft_1s_ease]"
           onChange={(e) => setSearchValue(e.target.value)}
         />
-        <FaSearch className="text-3xl cursor-pointer" onClick={handleChange} />
+        <FaSearch
+          className="text-3xl cursor-pointer animate-[fromRight_1s_ease]"
+          onClick={handleChange}
+        />
       </div>
 
       <article className="relative flex flex-col gap-6">
@@ -96,10 +99,13 @@ export default function BrowseBooks() {
         {/* Here this is section that list the books after every manipulation, it maps the updated booklists as per query, and reverse it so that latest book list first, because books are mapped based on its id and id is allocated in increasing order. If there is no books that is browsed for then it returns the message not found. */}
         <div className="flex flex-wrap gap-4">
           {bookList.length > 0 ? (
-            [...bookList].reverse().map((book) => (
+            [...bookList].reverse().map((book, index) => (
               <div
                 key={`book/${book.id}`}
-                className="relative flex flex-col gap-4 border rounded-md w-[200px] grow max-w-[300px] overflow-hidden justify-between"
+                className={`relative flex flex-col gap-4 border rounded-md w-[200px] grow max-w-[300px] overflow-hidden justify-between animate-[visibleOut_1s_ease] `}
+                style={{
+                  animationDelay: `${index * 0.2}s`,
+                }}
               >
                 <img
                   className="w-full h-[300px] object-cover hover:scale-90 transition-all"
